@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import JsonResponse from "../common/JsonResponse";
+import { JsonResponse } from "@/common";
 
 const instance = axios.create({
   baseURL: "http://localhost:8080",
