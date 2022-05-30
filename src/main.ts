@@ -1,10 +1,20 @@
+// Vue app
 import { createApp } from "vue";
 import App from "./App.vue";
 
-// 引入Element-Plus
-import ElementPlus from "element-plus";
-import "element-plus/dist/index.css";
+// Vuetify
+import "vuetify/styles";
+import "@mdi/font/css/materialdesignicons.css";
+import { createVuetify } from "vuetify";
+// Vuetify Components
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
+const vuetify = createVuetify({ components, directives });
 
-import router from "./router";
+// Vue Router
+import router from "@/routes";
 
-createApp(App).use(router).use(ElementPlus).mount("#app");
+const app = createApp(App);
+app.use(vuetify);
+app.use(router);
+app.mount("#app");

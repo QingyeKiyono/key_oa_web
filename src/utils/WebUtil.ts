@@ -7,16 +7,21 @@ const instance = axios.create({
   responseType: "json",
   responseEncoding: "utf-8",
   headers: {
-    "Content-Type": "application/json;charset=UTF-8"
+    "Content-Type": "application/json;charset=UTF-8",
   },
   validateStatus: (status) => status < 500,
 });
 
-const request = async <T = any>(
+const request = async <T = any>(config: AxiosRequestConfig): Promise<T> => {
+  const { data } = await instance.request<T>(config);
+  return data;
+};
+
+const jsonResRequest = async <T = any>(
   config: AxiosRequestConfig
 ): Promise<JsonResponse<T>> => {
   const { data } = await instance.request<JsonResponse<T>>(config);
   return data;
 };
 
-export default request;
+export { request, jsonResRequest };
