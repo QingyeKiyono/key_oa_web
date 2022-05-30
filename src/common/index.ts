@@ -1,4 +1,4 @@
-import { CookiePath } from "@/common/Constant";
+import { CookieName } from "@/common/Constant";
 import JsonResponse from "@/common/JsonResponse";
 
-export { CookiePath, type JsonResponse };
+export { CookieName, type JsonResponse };

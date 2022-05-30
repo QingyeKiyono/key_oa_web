@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { getCookie } from "typescript-cookie";
-import { CookiePath } from "@/common";
+import { CookieName } from "@/common";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,7 +21,7 @@ const router = createRouter({
 router.beforeEach((to) => {
   if (to.path != "/login") {
     // 如果不是首页的话，就检查token是否存在，如果不存在，就跳转到登录页面
-    if (getCookie(CookiePath.token) == null) {
+    if (getCookie(CookieName.token) == null) {
       router.push("/login").then();
     }
   }

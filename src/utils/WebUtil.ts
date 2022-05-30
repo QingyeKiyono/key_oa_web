@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { CookiePath, JsonResponse } from "@/common";
+import { CookieName, JsonResponse } from "@/common";
 import { getCookie } from "typescript-cookie";
 
 const instance = axios.create({
@@ -9,7 +9,7 @@ const instance = axios.create({
   responseEncoding: "utf-8",
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
-    token: getCookie(CookiePath.token) || "",
+    token: getCookie(CookieName.token) || "",
   },
   validateStatus: (status) => status < 500,
 });

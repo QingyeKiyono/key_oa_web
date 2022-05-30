@@ -35,7 +35,7 @@
 import { onMounted, reactive, ref } from "vue";
 import { jsonResRequest } from "@/utils/WebUtil";
 import { getCookie, setCookie } from "typescript-cookie";
-import { CookiePath } from "@/common";
+import { CookieName } from "@/common";
 import router from "@/routes";
 
 // 登录用到的提交内容
@@ -58,7 +58,7 @@ const rememberMe = ref(false);
 
 onMounted(() => {
   // 尝试加载预先存放咋cookie中的工号
-  loginForm.jobNumber = getCookie(CookiePath.jobNumber) || "";
+  loginForm.jobNumber = getCookie(CookieName.jobNumber) || "";
 });
 
 let login = () => {
@@ -69,10 +69,10 @@ let login = () => {
   }).then((r) => {
     if (r.code == "00000") {
       // 如果登陆成功，那么保存token，在后续的header中带上
-      setCookie(CookiePath.token, r.data.toString(), { expires: 0.8 });
+      setCookie(CookieName.token, r.data.toString(), { expires: 0.8 });
       // 如果勾选了记住我选项，那么把工号保存30天
       if (rememberMe.value) {
-        setCookie(CookiePath.jobNumber, loginForm.jobNumber, { expires: 30 });
+        setCookie(CookieName.jobNumber, loginForm.jobNumber, { expires: 30 });
       }
       // 跳转到首页
       router.push("/");

@@ -4,9 +4,9 @@ const token = `${cookieBase}.login`;
 
 const jobNumber = `${cookieBase}.jobNumber`;
 
-const CookiePath = {
+const CookieName = {
   token,
   jobNumber,
 };
 
-export { CookiePath };
+export { CookieName };
