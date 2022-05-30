@@ -35,6 +35,8 @@
 import { reactive, ref } from "vue";
 import { jsonResRequest } from "@/utils/WebUtil";
 import { setCookie } from "typescript-cookie";
+import { CookiePath } from "@/common";
+import router from "@/routes";
 
 // 登录用到的提交内容
 const loginForm = reactive({
@@ -61,10 +63,14 @@ let login = () => {
     method: "POST",
   }).then((r) => {
     if (r.code == "00000") {
-      setCookie("", r.data.toString());
+      // 如果登陆成功，那么保存token，在后续的header中带上
+      setCookie(CookiePath.token, r.data.toString(), { expires: 0.8 });
+      // 如果勾选了记住我选项，那么把工号保存30天
       if (rememberMe.value) {
-        alert(111);
+        setCookie(CookiePath.jobNumber, loginForm.jobNumber, { expires: 30 });
       }
+      // 跳转到首页
+      router.push("/");
     }
   });
 };
