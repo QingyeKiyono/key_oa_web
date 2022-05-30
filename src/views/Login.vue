@@ -32,9 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { jsonResRequest } from "@/utils/WebUtil";
-import { setCookie } from "typescript-cookie";
+import { getCookie, setCookie } from "typescript-cookie";
 import { CookiePath } from "@/common";
 import router from "@/routes";
 
@@ -55,6 +55,11 @@ const roles = {
 
 // 是否保存当前员工工号
 const rememberMe = ref(false);
+
+onMounted(() => {
+  // 尝试加载预先存放咋cookie中的工号
+  loginForm.jobNumber = getCookie(CookiePath.jobNumber) || "";
+});
 
 let login = () => {
   jsonResRequest<String>({
