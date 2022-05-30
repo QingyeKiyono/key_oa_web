@@ -9,7 +9,6 @@ const instance = axios.create({
   responseEncoding: "utf-8",
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
-    token: getCookie(CookieName.token) || "",
   },
   validateStatus: (status) => status < 500,
 });
@@ -22,6 +21,10 @@ const request = async <T = any>(config: AxiosRequestConfig): Promise<T> => {
 const jsonResRequest = async <T = any>(
   config: AxiosRequestConfig
 ): Promise<JsonResponse<T>> => {
+  let token = getCookie(CookieName.token);
+  if (token != null) {
+    config = { headers: { token }, ...config };
+  }
   const { data } = await instance.request<JsonResponse<T>>(config);
   return data;
 };
