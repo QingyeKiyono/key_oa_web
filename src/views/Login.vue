@@ -4,12 +4,13 @@
       <v-card>
         <v-card-title> KeyOA 员工登录 </v-card-title>
         <v-card-text>
-          <v-form :model="loginForm">
+          <v-form>
             <v-text-field
               label="Username"
               variant="outlined"
               clearable
               v-model="loginForm.jobNumber"
+              :rules="roles.jobNumber"
             ></v-text-field>
             <v-text-field
               label="Password"
@@ -17,6 +18,7 @@
               clearable
               type="password"
               v-model="loginForm.password"
+              :rules="roles.password"
             ></v-text-field>
           </v-form>
           <v-row>
@@ -34,11 +36,22 @@ import { reactive, ref } from "vue";
 import { jsonResRequest } from "@/utils/WebUtil";
 import { setCookie } from "typescript-cookie";
 
+// 登录用到的提交内容
 const loginForm = reactive({
   jobNumber: "",
   password: "",
 });
 
+// 校验的规则
+const roles = {
+  jobNumber: [
+    (i: String) => !!i || "工号不能为空！",
+    (i: String) => i.length <= 10 || "工号长度超过10！",
+  ],
+  password: [],
+};
+
+// 是否保存当前员工工号
 const rememberMe = ref(false);
 
 let login = () => {
