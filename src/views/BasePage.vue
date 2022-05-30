@@ -1,5 +1,8 @@
 <template>
   <v-toolbar app flat class="bg-white">
+    <v-app-bar-nav-icon
+      @click="showSideDrawer = !showSideDrawer"
+    ></v-app-bar-nav-icon>
     <v-toolbar-title>KeyOA</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn @click="showLogoutConfirm = true">
@@ -7,7 +10,7 @@
       <v-icon>mdi-exit-to-app</v-icon>
     </v-btn>
   </v-toolbar>
-  <v-navigation-drawer>123123</v-navigation-drawer>
+  <v-navigation-drawer v-model="showSideDrawer" app>123123</v-navigation-drawer>
   <slot></slot>
   <v-dialog v-model="showLogoutConfirm">
     <v-card>
@@ -28,6 +31,8 @@ import router from "@/routes";
 import { jsonResRequest } from "@/utils/WebUtil";
 import { removeCookie } from "typescript-cookie";
 import { CookieName } from "@/common";
+
+const showSideDrawer = ref(true);
 
 const showLogoutConfirm = ref(false);
 
