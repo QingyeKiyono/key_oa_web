@@ -69,11 +69,11 @@ let login = () => {
   }).then((r) => {
     if (r.code == "00000") {
       // 如果登陆成功，那么保存token，在后续的header中带上
-      setCookie(CookieName.token, r.data.toString(), { expires: 0.8 });
-      // 如果勾选了记住我选项，那么把工号保存30天
-      if (rememberMe.value) {
-        setCookie(CookieName.jobNumber, loginForm.jobNumber, { expires: 30 });
-      }
+      setCookie(CookieName.token, r.data.toString(), { expires: 1 });
+      // 如果勾选了记住我选项，那么把工号保存30天，反之保存1天
+      setCookie(CookieName.jobNumber, loginForm.jobNumber, {
+        expires: rememberMe.value ? 30 : 1,
+      });
       // 跳转到首页
       router.push("/");
     }
