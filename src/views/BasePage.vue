@@ -56,8 +56,8 @@
 import { onMounted, reactive, ref } from "vue";
 import router from "@/routes";
 import { jsonResRequest } from "@/utils/WebUtil";
-import { removeCookie } from "typescript-cookie";
-import { CookieName } from "@/common";
+import { getCookie, removeCookie } from "typescript-cookie";
+import { CookieName, Employee } from "@/common";
 
 // 是否显示侧边导航栏
 const showSideDrawer = ref(true);
@@ -81,8 +81,8 @@ let logout = () => {
 
 // 简要Profile信息（姓名、工号）
 const briefProfile = ref({
-  name: "芦畅",
-  jobNumber: "20221390",
+  name: "",
+  jobNumber: "",
 });
 
 // 简要Profile信息（侧边栏第一项）被点击
@@ -119,6 +119,16 @@ const navigationRoutes = reactive<Array<NavigationRouteRecord>>([
 onMounted(() => {
   // 这里需要获取一些后台的资源
   console.log("mounted...");
+  const jobNumber = getCookie(CookieName.jobNumber)!!;
+  jsonResRequest<Employee>({
+    url: `/employees/${jobNumber}`,
+    params: {
+      current: true,
+    },
+  }).then((res) => {
+    briefProfile.value.name = res.data.name.toString();
+    briefProfile.value.jobNumber = res.data.jobNumber.toString();
+  });
 });
 </script>
 
