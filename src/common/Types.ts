@@ -4,6 +4,7 @@ interface JsonResponse<T = any> {
   data: T;
 }
 
+// 员工实体的类型定义
 interface Employee {
   id: Number;
   name: String;
@@ -16,4 +17,14 @@ interface Employee {
   verified: Boolean;
 }
 
-export { type Employee, type JsonResponse };
+// 路由项的类型定义
+interface Page {
+  id: Number;
+  url: String;
+  description: String;
+  icon: String;
+  pageGroup: Boolean;
+  children: Set<Page>;
+}
+
+export { type Employee, type JsonResponse, type Page };

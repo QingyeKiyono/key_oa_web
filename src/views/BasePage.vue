@@ -28,12 +28,12 @@
       <v-list :nav="true">
         <v-list-item
           v-for="navRoute in navigationRoutes"
-          :key="navRoute.route"
+          :key="navRoute.id"
           :prepend-icon="navRoute.icon"
-          :title="navRoute.name"
-          :value="navRoute.route"
+          :title="navRoute.description"
+          :value="navRoute.url"
           :link="true"
-          :to="navRoute.route"
+          :to="navRoute.url"
         ></v-list-item>
       </v-list>
     </v-list>
@@ -41,7 +41,7 @@
   <slot></slot>
   <v-dialog v-model="showLogoutConfirm">
     <v-card>
-      <v-card-text> 确定要退出登陆吗 </v-card-text>
+      <v-card-text> 确定要退出登陆吗</v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
         <v-btn @click="showLogoutConfirm = false">取消</v-btn>
@@ -58,6 +58,7 @@ import router from "@/routes";
 import { jsonResRequest } from "@/utils/WebUtil";
 import { getCookie, removeCookie } from "typescript-cookie";
 import { CookieName, Employee } from "@/common";
+import { Page } from "@/common/Types";
 
 // 是否显示侧边导航栏
 const showSideDrawer = ref(true);
@@ -90,35 +91,11 @@ let gotoProfile = () => {
   console.log("going to profile...");
 };
 
-// 侧边栏的导航路由
-interface NavigationRouteRecord {
-  name: String;
-  route: String;
-  icon?: String;
-}
-
 // 侧边栏的路由信息
-const navigationRoutes = reactive<Array<NavigationRouteRecord>>([
-  {
-    name: "My files",
-    route: "/files",
-    icon: "mdi-folder",
-  },
-  {
-    name: "Shared with me",
-    route: "/share",
-    icon: "mdi-account-multiple",
-  },
-  {
-    name: "Starred",
-    route: "/star",
-    icon: "mdi-star",
-  },
-]);
+let navigationRoutes = reactive<Array<Page>>([]);
 
 onMounted(() => {
-  // 这里需要获取一些后台的资源
-  console.log("mounted...");
+  // 加载当前员工的个人信息
   const jobNumber = getCookie(CookieName.jobNumber)!!;
   jsonResRequest<Employee>({
     url: `/employees/${jobNumber}`,
@@ -128,6 +105,13 @@ onMounted(() => {
   }).then((res) => {
     briefProfile.value.name = res.data.name.toString();
     briefProfile.value.jobNumber = res.data.jobNumber.toString();
+  });
+
+  // 加载页面资源
+  jsonResRequest<Array<Page>>({
+    url: `/pages/current`,
+  }).then((res) => {
+    navigationRoutes.push(...res.data);
   });
 });
 </script>
