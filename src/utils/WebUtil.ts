@@ -13,11 +13,13 @@ const instance = axios.create({
   validateStatus: (status) => status < 500,
 });
 
+// 普通的request，返回的response可以没有固定格式
 const request = async <T = any>(config: AxiosRequestConfig): Promise<T> => {
   const { data } = await instance.request<T>(config);
   return data;
 };
 
+// Json request，返回的response需要符合JsonResponse的格式
 const jsonResRequest = async <T = any>(
   config: AxiosRequestConfig
 ): Promise<JsonResponse<T>> => {
