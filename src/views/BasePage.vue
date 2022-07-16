@@ -38,7 +38,7 @@
       </v-list>
     </v-list>
   </v-navigation-drawer>
-  <slot></slot>
+  <router-view></router-view>
   <v-dialog v-model="showLogoutConfirm">
     <v-card>
       <v-card-text> 确定要退出登陆吗</v-card-text>
@@ -111,7 +111,16 @@ onMounted(() => {
   jsonResRequest<Array<Page>>({
     url: `/pages/current`,
   }).then((res) => {
-    navigationRoutes.push(...res.data);
+    for (const page of res.data) {
+      // 将路由添加到vue-router
+      router.addRoute("index", {
+        path: page.url.toString(),
+        component: () => import("@/views/Main.vue"),
+      });
+
+      // 将路由显示在页面上
+      navigationRoutes.push(...res.data);
+    }
   });
 });
 </script>

@@ -4,8 +4,16 @@ import { CookieName } from "@/common";
 
 const routes: Array<RouteRecordRaw> = [
   {
+    name: "index",
     path: "/",
-    component: () => import("@/views/Main.vue"),
+    component: () => import("@/views/BasePage.vue"),
+    redirect: "/main",
+    children: [
+      {
+        path: "/main",
+        component: () => import("@/views/Main.vue"),
+      },
+    ],
   },
   {
     path: "/login",
