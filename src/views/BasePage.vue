@@ -112,12 +112,6 @@ onMounted(() => {
     url: `/pages/current`,
   }).then((res) => {
     for (const page of res.data) {
-      // 将路由添加到vue-router
-      router.addRoute("index", {
-        path: page.url.toString(),
-        component: () => import("@/views/Main.vue"),
-      });
-
       // 将路由显示在页面上
       navigationRoutes.push(...res.data);
     }
