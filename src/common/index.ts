@@ -1,4 +1,4 @@
-import { CookieName } from "@/common/Constant";
-import { JsonResponse, Employee } from "@/common/Types";
+import { CookieName } from "./Constant";
+import { Employee, JsonResponse } from "./types";
 
 export { CookieName, type JsonResponse, type Employee };

@@ -55,10 +55,10 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from "vue";
 import router from "@/routes";
-import { jsonResRequest } from "@/utils/WebUtil";
+import { jsonResRequest, request } from "@/utils/WebUtil";
 import { getCookie, removeCookie } from "typescript-cookie";
 import { CookieName, Employee } from "@/common";
-import { Page } from "@/common/Types";
+import { Page } from "@/common/types";
 
 // 是否显示侧边导航栏
 const showSideDrawer = ref(true);
@@ -115,6 +115,18 @@ onMounted(() => {
       // 将路由显示在页面上
       navigationRoutes.push(...res.data);
     }
+  });
+
+  request({
+    url: "/actuator/metrics/jvm.memory.max",
+  }).then((res) => {
+    console.log(res);
+  });
+
+  request({
+    url: "/actuator/metrics/application.ready.time",
+  }).then((res) => {
+    console.log(res);
   });
 });
 </script>

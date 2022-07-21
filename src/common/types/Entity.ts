@@ -1,9 +1,3 @@
-interface JsonResponse<T = any> {
-  code: String;
-  message: String;
-  data: T;
-}
-
 // 员工实体的类型定义
 interface Employee {
   id: Number;
@@ -27,4 +21,4 @@ interface Page {
   children: Set<Page>;
 }
 
-export { type Employee, type JsonResponse, type Page };
+export { type Employee, type Page };
