@@ -57,8 +57,7 @@ import { onMounted, reactive, ref } from "vue";
 import router from "@/routes";
 import { jsonResRequest, request } from "@/utils/WebUtil";
 import { getCookie, removeCookie } from "typescript-cookie";
-import { CookieName, Employee } from "@/common";
-import { Page } from "@/common/types";
+import { Actuator, CookieName, Employee, Page } from "@/common";
 
 // 是否显示侧边导航栏
 const showSideDrawer = ref(true);
@@ -117,16 +116,10 @@ onMounted(() => {
     }
   });
 
-  request({
+  request<Actuator>({
     url: "/actuator/metrics/jvm.memory.max",
   }).then((res) => {
-    console.log(res);
-  });
-
-  request({
-    url: "/actuator/metrics/application.ready.time",
-  }).then((res) => {
-    console.log(res);
+    console.log(res.measurements[0].value);
   });
 });
 </script>

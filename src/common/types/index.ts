@@ -10,3 +10,5 @@ import { Employee, Page } from "./Entity";
 export { type Employee, type Page };
 
 // Actuator type.
+import Actuator from "./Actuator";
+export { type Actuator };
