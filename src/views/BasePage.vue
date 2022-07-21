@@ -54,9 +54,10 @@
 
 <script setup lang="ts">
 import { onMounted, reactive, ref } from "vue";
-import router from "@/routes";
-import { jsonResRequest, request } from "@/utils/WebUtil";
 import { getCookie, removeCookie } from "typescript-cookie";
+
+import router from "@/routes";
+import { jsonResRequest, request } from "@/utils";
 import { Actuator, CookieName, Employee, Page } from "@/common";
 
 // 是否显示侧边导航栏
