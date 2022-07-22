@@ -57,8 +57,8 @@ import { onMounted, reactive, ref } from "vue";
 import { getCookie, removeCookie } from "typescript-cookie";
 
 import router from "@/routes";
-import { jsonResRequest, request } from "@/utils";
-import { Actuator, CookieName, Employee, Page } from "@/common";
+import { jsonResRequest } from "@/utils";
+import { CookieName, Employee, Page } from "@/common";
 
 // 是否显示侧边导航栏
 const showSideDrawer = ref(true);
@@ -115,12 +115,6 @@ onMounted(() => {
       // 将路由显示在页面上
       navigationRoutes.push(...res.data);
     }
-  });
-
-  request<Actuator>({
-    url: "/actuator/metrics/jvm.memory.max",
-  }).then((res) => {
-    console.log(res.measurements[0].value);
   });
 });
 </script>

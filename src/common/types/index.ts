@@ -10,5 +10,6 @@ import { Employee, Page } from "./Entity";
 export { type Employee, type Page };
 
 // Actuator type.
-import Actuator from "./Actuator";
-export { type Actuator };
+// noinspection ES6PreferShortImport
+import { Actuator, Metrics, MetricsNames } from "./Actuator";
+export { type Actuator, type Metrics, type MetricsNames };

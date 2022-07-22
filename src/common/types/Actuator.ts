@@ -20,6 +20,11 @@ interface Metrics {
   readonly availableTags: Array<Tag>;
 }
 
-type Actuator = Metrics;
+// 所有可用的Metrics的名称
+interface MetricsNames {
+  readonly names: Array<String>;
+}
 
-export default Actuator;
+type Actuator = Metrics | MetricsNames;
+
+export { type Actuator, type Metrics, type MetricsNames };
