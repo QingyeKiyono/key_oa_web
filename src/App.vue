@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <v-main app>
-      <router-view></router-view>
-    </v-main>
+    <router-view></router-view>
     <!--suppress HtmlUnknownBooleanAttribute -->
     <v-footer app width="100%" class="text-center">
       <v-card-text>2022 - <strong>KeyOA</strong></v-card-text>

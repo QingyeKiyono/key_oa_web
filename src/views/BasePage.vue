@@ -1,21 +1,4 @@
 <template>
-  <v-toolbar app flat class="bg-white">
-    <v-app-bar-nav-icon
-      @click="showSideDrawer = !showSideDrawer"
-    ></v-app-bar-nav-icon>
-    <v-toolbar-title>KeyOA</v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-btn>
-      <v-icon>mdi-check</v-icon>
-    </v-btn>
-    <v-btn>
-      <v-icon>mdi-bell</v-icon>
-    </v-btn>
-    <v-btn @click="showLogoutConfirm = true">
-      <span>退出登录</span>
-      <v-icon>mdi-exit-to-app</v-icon>
-    </v-btn>
-  </v-toolbar>
   <v-navigation-drawer v-model="showSideDrawer" app :expand-on-hover="true">
     <v-list>
       <v-list-item
@@ -38,7 +21,26 @@
       </v-list>
     </v-list>
   </v-navigation-drawer>
-  <router-view></router-view>
+  <v-app-bar app flat class="bg-white">
+    <v-app-bar-nav-icon
+      @click="showSideDrawer = !showSideDrawer"
+    ></v-app-bar-nav-icon>
+    <v-app-bar-title>KeyOA</v-app-bar-title>
+    <v-spacer></v-spacer>
+    <v-btn>
+      <v-icon>mdi-check</v-icon>
+    </v-btn>
+    <v-btn>
+      <v-icon>mdi-bell</v-icon>
+    </v-btn>
+    <v-btn @click="showLogoutConfirm = true">
+      <span>退出登录</span>
+      <v-icon>mdi-exit-to-app</v-icon>
+    </v-btn>
+  </v-app-bar>
+  <v-main app>
+    <router-view></router-view>
+  </v-main>
   <v-dialog v-model="showLogoutConfirm">
     <v-card>
       <v-card-text> 确定要退出登陆吗</v-card-text>
