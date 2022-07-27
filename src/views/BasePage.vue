@@ -25,7 +25,7 @@
     <v-app-bar-nav-icon
       @click="showSideDrawer = !showSideDrawer"
     ></v-app-bar-nav-icon>
-    <v-app-bar-title>KeyOA</v-app-bar-title>
+    <v-app-bar-title @click="router.push('/')">KeyOA</v-app-bar-title>
     <v-spacer></v-spacer>
     <v-btn>
       <v-icon>mdi-check</v-icon>
