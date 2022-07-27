@@ -12,6 +12,7 @@
     "@web-types/vuetify": "^2.0.15-1",
     "axios": "^0.27.2",
     "global": "^4.4.0",
+    "pinia": "^2.0.17",
     "roboto-fontface": "*",
     "typescript-cookie": "^1.0.4",
     "vue": "^3.2.37",

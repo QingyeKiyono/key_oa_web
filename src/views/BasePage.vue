@@ -3,8 +3,8 @@
     <v-list>
       <v-list-item
         prepend-icon="mdi-account"
-        :title="briefProfile.name"
-        :subtitle="briefProfile.jobNumber"
+        :title="loginStore.name"
+        :subtitle="loginStore.jobNumber"
         @click="gotoProfile"
       ></v-list-item>
       <v-divider></v-divider>
@@ -61,6 +61,7 @@ import { getCookie, removeCookie } from "typescript-cookie";
 import router from "@/routes";
 import { jsonResRequest } from "@/utils";
 import { CookieName, Employee, Page } from "@/common";
+import { useLoginStore } from "@/store";
 
 // 是否显示侧边导航栏
 const showSideDrawer = ref(true);
@@ -83,15 +84,11 @@ let logout = () => {
 };
 
 // 简要Profile信息（姓名、工号）
-const briefProfile = reactive({
-  name: "",
-  jobNumber: ""
-});
+const loginStore = useLoginStore();
 
 // 简要Profile信息（侧边栏第一项）被点击
 let gotoProfile = () => {
-  router.push(`/profile/${briefProfile.jobNumber}`);
-  // console.log("going to profile...");
+  router.push("/profile");
 };
 
 // 侧边栏的路由信息
@@ -103,16 +100,15 @@ onMounted(() => {
   jsonResRequest<Employee>({
     url: `/employees/${jobNumber}`,
     params: {
-      current: true
-    }
+      current: true,
+    },
   }).then((res) => {
-    briefProfile.name = res.data.name.toString();
-    briefProfile.jobNumber = res.data.jobNumber.toString();
+    loginStore.setLoginEmployee(res.data);
   });
 
   // 加载页面资源
   jsonResRequest<Array<Page>>({
-    url: `/pages/current`
+    url: `/pages/current`,
   }).then((res) => {
     for (const page of res.data) {
       // 将路由显示在页面上
