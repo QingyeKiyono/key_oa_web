@@ -83,14 +83,15 @@ let logout = () => {
 };
 
 // 简要Profile信息（姓名、工号）
-const briefProfile = ref({
+const briefProfile = reactive({
   name: "",
-  jobNumber: "",
+  jobNumber: ""
 });
 
 // 简要Profile信息（侧边栏第一项）被点击
 let gotoProfile = () => {
-  console.log("going to profile...");
+  router.push(`/profile/${briefProfile.jobNumber}`);
+  // console.log("going to profile...");
 };
 
 // 侧边栏的路由信息
@@ -102,16 +103,16 @@ onMounted(() => {
   jsonResRequest<Employee>({
     url: `/employees/${jobNumber}`,
     params: {
-      current: true,
-    },
+      current: true
+    }
   }).then((res) => {
-    briefProfile.value.name = res.data.name.toString();
-    briefProfile.value.jobNumber = res.data.jobNumber.toString();
+    briefProfile.name = res.data.name.toString();
+    briefProfile.jobNumber = res.data.jobNumber.toString();
   });
 
   // 加载页面资源
   jsonResRequest<Array<Page>>({
-    url: `/pages/current`,
+    url: `/pages/current`
   }).then((res) => {
     for (const page of res.data) {
       // 将路由显示在页面上
