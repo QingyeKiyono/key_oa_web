@@ -62,6 +62,14 @@
         </v-col>
       </v-row>
     </v-form>
+    <v-row>
+      <v-col>
+        <v-btn v-if="profile === 'new'">取消</v-btn>
+      </v-col>
+      <v-col>
+        <v-btn v-if="profile === 'new'">新增员工</v-btn>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
