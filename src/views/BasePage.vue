@@ -88,7 +88,7 @@ const loginStore = useLoginStore();
 
 // 简要Profile信息（侧边栏第一项）被点击
 let gotoProfile = () => {
-  router.push("/profile");
+  router.push(`/profile/${loginStore.loginEmployee.jobNumber}`);
 };
 
 // 侧边栏的路由信息
