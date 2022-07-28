@@ -3,11 +3,12 @@
     <v-table :fixed-header="true">
       <thead>
         <tr>
-          <th class="text-left">姓名</th>
+          <th class="text-left v-col-1">姓名</th>
           <th class="text-left">工号</th>
           <th class="text-left">电话号码</th>
           <th class="text-left">出生日期</th>
-          <th class="text-left">电子邮箱</th>
+          <th class="text-left v-col-2">电子邮箱</th>
+          <th class="text-left v-col-4">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +18,12 @@
           <td>{{ employee.phone }}</td>
           <td>{{ employee.birthday }}</td>
           <td>{{ employee.email }}</td>
+          <td>
+            <v-row>
+              <v-btn>查看详细信息</v-btn>
+              <v-btn class="offset-1">发送消息</v-btn>
+            </v-row>
+          </td>
         </tr>
       </tbody>
     </v-table>
