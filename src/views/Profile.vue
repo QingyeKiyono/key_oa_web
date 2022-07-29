@@ -6,16 +6,16 @@
           <v-text-field
             readonly
             label="姓名"
-            variant="outlined"
-            :value="state.currentEmployee.name"
+            variant="solo"
+            :model-value="loginStore.loginEmployee.name"
           >
           </v-text-field>
         </v-col>
         <v-col cols="3" offset="1">
           <v-text-field
             readonly
-            variant="outlined"
-            :value="state.currentEmployee.email"
+            variant="solo"
+            :model-value="loginStore.loginEmployee.email"
             label="工号"
           >
           </v-text-field>
@@ -25,8 +25,8 @@
         <v-col cols="3">
           <v-text-field
             readonly
-            variant="outlined"
-            :value="state.currentEmployee.phone"
+            variant="solo"
+            :model-value="loginStore.loginEmployee.phone"
             label="电话号码"
           >
           </v-text-field>
@@ -34,8 +34,8 @@
         <v-col cols="3" offset="1">
           <v-text-field
             readonly
-            variant="outlined"
-            :value="state.currentEmployee.email"
+            variant="solo"
+            :model-value="loginStore.loginEmployee.email"
             label="电子邮箱"
           >
           </v-text-field>
@@ -45,8 +45,8 @@
         <v-col cols="3">
           <v-text-field
             readonly
-            variant="outlined"
-            :value="state.currentEmployee.identity"
+            variant="solo"
+            :model-value="loginStore.loginEmployee.identity"
             label="身份证号"
           >
           </v-text-field>
@@ -54,8 +54,8 @@
         <v-col cols="3" offset="1">
           <v-text-field
             readonly
-            variant="outlined"
-            :value="state.currentEmployee.birthday"
+            variant="solo"
+            :model-value="loginStore.loginEmployee.birthday"
             label="出生日期"
           >
           </v-text-field>
