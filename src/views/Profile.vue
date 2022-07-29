@@ -4,18 +4,18 @@
       <v-row :no-gutters="true">
         <v-col cols="3">
           <v-text-field
-            readonly
+            :readonly="profile !== 'new'"
             label="姓名"
             variant="solo"
-            :model-value="loginStore.loginEmployee.name"
+            :model-value="state.currentEmployee.name"
           >
           </v-text-field>
         </v-col>
         <v-col cols="3" offset="1">
           <v-text-field
-            readonly
+            :readonly="profile !== 'new'"
             variant="solo"
-            :model-value="loginStore.loginEmployee.email"
+            :model-value="state.currentEmployee.jobNumber"
             label="工号"
           >
           </v-text-field>
@@ -24,18 +24,18 @@
       <v-row :no-gutters="true">
         <v-col cols="3">
           <v-text-field
-            readonly
+            :readonly="profile !== 'new'"
             variant="solo"
-            :model-value="loginStore.loginEmployee.phone"
+            :model-value="state.currentEmployee.phone"
             label="电话号码"
           >
           </v-text-field>
         </v-col>
         <v-col cols="3" offset="1">
           <v-text-field
-            readonly
+            :readonly="profile !== 'new'"
             variant="solo"
-            :model-value="loginStore.loginEmployee.email"
+            :model-value="state.currentEmployee.email"
             label="电子邮箱"
           >
           </v-text-field>
@@ -44,19 +44,20 @@
       <v-row :no-gutters="true">
         <v-col cols="3">
           <v-text-field
-            readonly
+            :readonly="profile !== 'new'"
             variant="solo"
-            :model-value="loginStore.loginEmployee.identity"
+            :model-value="state.currentEmployee.identity"
             label="身份证号"
           >
           </v-text-field>
         </v-col>
         <v-col cols="3" offset="1">
           <v-text-field
-            readonly
+            :readonly="profile !== 'new'"
             variant="solo"
-            :model-value="loginStore.loginEmployee.birthday"
+            :model-value="state.currentEmployee.birthday"
             label="出生日期"
+            type="date"
           >
           </v-text-field>
         </v-col>
