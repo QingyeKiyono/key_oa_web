@@ -65,7 +65,7 @@
     </v-form>
     <v-row>
       <v-col>
-        <v-btn v-if="profile === 'new'">取消</v-btn>
+        <v-btn v-if="profile === 'new'" @click="router.back()">取消</v-btn>
       </v-col>
       <v-col>
         <v-btn v-if="profile === 'new'">新增员工</v-btn>
@@ -79,6 +79,7 @@ import { useLoginStore } from "@/store";
 import { defineProps, onMounted, reactive} from "vue";
 import { Employee } from "@/common";
 import { jsonResRequest } from "@/utils";
+import router from "@/routes";
 
 const loginStore = useLoginStore();
 
