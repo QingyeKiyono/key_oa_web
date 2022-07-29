@@ -75,8 +75,9 @@
 </template>
 
 <script setup lang="ts">
-import { useLoginStore } from "@/store";
 import { defineProps, onMounted, reactive} from "vue";
+
+import { useLoginStore } from "@/store";
 import { Employee } from "@/common";
 import { jsonResRequest } from "@/utils";
 import router from "@/routes";
