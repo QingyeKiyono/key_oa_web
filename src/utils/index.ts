@@ -23,5 +23,5 @@ export {
 };
 
 // Validators
-import { phone, identity } from "@/utils/Validator";
+import { phone, identity } from "@/utils/Validation";
 export { phone, identity };
