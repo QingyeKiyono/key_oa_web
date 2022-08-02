@@ -8,6 +8,7 @@
             label="姓名"
             variant="solo"
             v-model="state.currentEmployee.name"
+            :error-messages="nameErrors"
           >
           </v-text-field>
         </v-col>
@@ -17,6 +18,7 @@
             variant="solo"
             v-model="state.currentEmployee.jobNumber"
             label="工号"
+            :error-messages="jobNumberErrors"
           >
           </v-text-field>
         </v-col>
@@ -28,6 +30,7 @@
             variant="solo"
             v-model="state.currentEmployee.phone"
             label="电话号码"
+            :error-messages="phoneErrors"
           >
           </v-text-field>
         </v-col>
@@ -37,6 +40,7 @@
             variant="solo"
             v-model="state.currentEmployee.email"
             label="电子邮箱"
+            :error-messages="emailErrors"
           >
           </v-text-field>
         </v-col>
@@ -48,6 +52,7 @@
             variant="solo"
             v-model="state.currentEmployee.identity"
             label="身份证号"
+            :error-messages="identityErrors"
           >
           </v-text-field>
         </v-col>
@@ -58,6 +63,7 @@
             v-model="state.currentEmployee.birthday"
             label="出生日期"
             type="date"
+            :error-messages="birthdayErrors"
           >
           </v-text-field>
         </v-col>
@@ -68,19 +74,24 @@
         <v-btn v-if="profile === 'new'" @click="router.back()">取消</v-btn>
       </v-col>
       <v-col>
-        <v-btn v-if="profile === 'new'">新增员工</v-btn>
+        <v-btn v-if="profile === 'new'" :disabled="saveButtonDisabled">
+          新增员工
+        </v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 
 import { useLoginStore } from "@/store";
 import { Employee } from "@/common";
-import { jsonResRequest } from "@/utils";
+import { identity, jsonResRequest, phone } from "@/utils";
 import router from "@/routes";
+
+import useVuelidate from "@vuelidate/core";
+import { email, maxLength, minLength, required } from "@vuelidate/validators";
 
 const loginStore = useLoginStore();
 
@@ -98,6 +109,72 @@ let props = defineProps({
 });
 
 let state = reactive({ currentEmployee: {} as Employee });
+
+const rules = {
+  currentEmployee: {
+    name: { required, maxLength: maxLength(10) },
+    jobNumber: { required, maxLength: maxLength(8), minLength: minLength(8) },
+    email: { required, email },
+    phone: { required, phone },
+    identity: { required, identity },
+    birthday: { required },
+  },
+};
+
+let v$ = ref(useVuelidate(rules, state));
+
+const saveButtonDisabled = computed(() => {
+  v$.value.$validate();
+  return v$.value.$error;
+});
+
+const nameErrors = computed<Array<string>>(() => {
+  const errors: Array<string> = [];
+  v$.value.currentEmployee.name.$errors.forEach((error) => {
+    errors.push(error.$message as string);
+  });
+  return errors;
+});
+
+const jobNumberErrors = computed<Array<string>>(() => {
+  const errors: Array<string> = [];
+  v$.value.currentEmployee.jobNumber.$errors.forEach((error) => {
+    errors.push(error.$message as string);
+  });
+  return errors;
+});
+
+const phoneErrors = computed<Array<string>>(() => {
+  const errors: Array<string> = [];
+  v$.value.currentEmployee.phone.$errors.forEach((error) => {
+    errors.push(error.$message as string);
+  });
+  return errors;
+});
+
+const emailErrors = computed<Array<string>>(() => {
+  const errors: Array<string> = [];
+  v$.value.currentEmployee.email.$errors.forEach((error) => {
+    errors.push(error.$message as string);
+  });
+  return errors;
+});
+
+const identityErrors = computed<Array<string>>(() => {
+  const errors: Array<string> = [];
+  v$.value.currentEmployee.identity.$errors.forEach((error) => {
+    errors.push(error.$message as string);
+  });
+  return errors;
+});
+
+const birthdayErrors = computed<Array<string>>(() => {
+  const errors: Array<string> = [];
+  v$.value.currentEmployee.birthday.$errors.forEach((error) => {
+    errors.push(error.$message as string);
+  });
+  return errors;
+});
 
 onMounted(() => {
   // 创建新的员工

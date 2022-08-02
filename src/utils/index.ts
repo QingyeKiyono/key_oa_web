@@ -21,3 +21,7 @@ export {
   getDiskTotal,
   getDiskFree,
 };
+
+// Validators
+import { phone, identity } from "@/utils/Validator";
+export { phone, identity };
