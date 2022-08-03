@@ -1,6 +1,6 @@
 // 员工实体的类型定义
 interface Employee {
-  id: Number;
+  id?: Number;
   name: String;
   jobNumber: String;
   phone: String;

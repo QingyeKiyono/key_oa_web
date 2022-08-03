@@ -74,7 +74,11 @@
         <v-btn v-if="profile === 'new'" @click="router.back()">取消</v-btn>
       </v-col>
       <v-col>
-        <v-btn v-if="profile === 'new'" :disabled="saveButtonDisabled">
+        <v-btn
+          v-if="profile === 'new'"
+          :disabled="saveButtonDisabled"
+          @click="saveEmployee"
+        >
           新增员工
         </v-btn>
       </v-col>
@@ -175,6 +179,30 @@ const birthdayErrors = computed<Array<string>>(() => {
   });
   return errors;
 });
+
+function saveEmployee(): void {
+  const employee: Employee = {
+    id: 0,
+    name: state.currentEmployee.name,
+    jobNumber: state.currentEmployee.jobNumber,
+    phone: state.currentEmployee.phone,
+    email: state.currentEmployee.email,
+    identity: state.currentEmployee.email,
+    birthday: state.currentEmployee.birthday,
+    password: "1234",
+    verified: false,
+  };
+  const data = JSON.stringify(employee);
+
+  jsonResRequest({
+    url: "/employees/",
+    method: "POST",
+    data,
+  }).then((res) => {
+    console.log(res.code);
+    router.back();
+  });
+}
 
 onMounted(() => {
   // 创建新的员工
