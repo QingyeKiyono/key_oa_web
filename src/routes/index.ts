@@ -32,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
     path: "/login",
     component: () => import("@/views/Login.vue"),
   },
+  {
+    path: "/:pathMatch(.*)*",
+    component: () => import("@/views/404.vue"),
+  },
 ];
 
 const router = createRouter({
