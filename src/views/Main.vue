@@ -1,5 +1,5 @@
 <template>
-  <v-container class="d-flex justify-center align-center fill-height">
+  <v-container class="justify-center" fluid>
     <v-card class="ma-5">
       <v-card-title> CPU </v-card-title>
       <v-card-text

@@ -1,6 +1,11 @@
 <template>
-  <div class="v-text-center">
-    <v-table :fixed-header="true">
+  <v-container class="ma-0 pa-0" fluid>
+    <v-row class="pa-1">
+      <v-col>
+        <v-btn @click="router.push('/profile/new')"> 新建员工信息 </v-btn>
+      </v-col>
+    </v-row>
+    <v-table :fixed-header="true" class="pa-1">
       <thead>
         <tr>
           <th class="text-left v-col-1">姓名</th>
@@ -20,7 +25,9 @@
           <td>{{ employee.email }}</td>
           <td>
             <v-row>
-              <v-btn>查看详细信息</v-btn>
+              <v-btn @click="router.push(`/profile/${employee.jobNumber}`)">
+                查看详细信息
+              </v-btn>
               <v-btn class="offset-1">发送消息</v-btn>
             </v-row>
           </td>
@@ -32,7 +39,7 @@
       :length="state.length"
       v-on:update:modelValue="updatePage"
     ></v-pagination>
-  </div>
+  </v-container>
 </template>
 
 <script setup lang="ts">
@@ -40,6 +47,7 @@ import { onMounted, reactive } from "vue";
 
 import { jsonResRequest } from "@/utils";
 import { Employee } from "@/common";
+import router from "@/routes";
 
 let state = reactive({
   // 员工的列表
@@ -47,7 +55,7 @@ let state = reactive({
   // 和分页有关的变量，分别是：页号；页数；每页员工数
   page: 1,
   length: 1,
-  pageSize: 10,
+  pageSize: 9,
 });
 
 // 页面更新后的动作，即获取对应页面的员工列表

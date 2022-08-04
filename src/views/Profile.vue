@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-form>
       <v-row :no-gutters="true">
         <v-col cols="3">

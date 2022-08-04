@@ -1,34 +1,36 @@
 <template>
   <v-main app>
-    <v-container class="d-flex justify-center align-center fill-height">
-      <v-col cols="4">
-        <v-card>
-          <v-card-title> KeyOA 员工登录 </v-card-title>
-          <v-card-text>
-            <v-form>
-              <v-text-field
-                label="Username"
-                variant="outlined"
-                clearable
-                v-model="loginForm.jobNumber"
-                :rules="roles.jobNumber"
-              ></v-text-field>
-              <v-text-field
-                label="Password"
-                variant="outlined"
-                clearable
-                type="password"
-                v-model="loginForm.password"
-                :rules="roles.password"
-              ></v-text-field>
-            </v-form>
-            <v-row>
-              <v-checkbox label="记住我" v-model="rememberMe"></v-checkbox>
-              <v-btn class="v-btn--size-large" @click="login">登录</v-btn>
-            </v-row>
-          </v-card-text>
-        </v-card>
-      </v-col>
+    <v-container class="d-flex fill-height">
+      <v-row justify="center">
+        <v-col cols="4" align-self="center">
+          <v-card>
+            <v-card-title> KeyOA 员工登录 </v-card-title>
+            <v-card-text>
+              <v-form>
+                <v-text-field
+                  label="Username"
+                  variant="outlined"
+                  clearable
+                  v-model="loginForm.jobNumber"
+                  :rules="roles.jobNumber"
+                ></v-text-field>
+                <v-text-field
+                  label="Password"
+                  variant="outlined"
+                  clearable
+                  type="password"
+                  v-model="loginForm.password"
+                  :rules="roles.password"
+                ></v-text-field>
+              </v-form>
+              <v-row>
+                <v-checkbox label="记住我" v-model="rememberMe"></v-checkbox>
+                <v-btn class="v-btn--size-large" @click="login">登录</v-btn>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
     </v-container>
   </v-main>
 </template>
