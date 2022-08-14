@@ -13,7 +13,7 @@
       </v-col>
       <v-col cols="1">
         <v-btn
-          @click="display"
+          @click="deleteEmployees"
           variant="outlined"
           :disabled="state.selectEmployees.length === 0"
         >
@@ -99,7 +99,7 @@ function updatePage(page: Number): void {
   });
 }
 
-function display() {
+function deleteEmployees() {
   console.log(state.selectEmployees.length);
 }
 
