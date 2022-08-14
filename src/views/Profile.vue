@@ -87,7 +87,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onMounted, reactive} from "vue";
 
 import { useLoginStore } from "@/store";
 import { Employee } from "@/common";
@@ -114,18 +114,20 @@ let props = defineProps({
 
 let state = reactive({ currentEmployee: {} as Employee });
 
-const rules = {
-  currentEmployee: {
-    name: { required, maxLength: maxLength(10) },
-    jobNumber: { required, maxLength: maxLength(8), minLength: minLength(8) },
-    email: { required, email },
-    phone: { required, phone },
-    identity: { required, identity },
-    birthday: { required },
-  },
-};
+const rules = computed(() => {
+  return {
+    currentEmployee: {
+      name: { required, maxLength: maxLength(10) },
+      jobNumber: { required, maxLength: maxLength(8), minLength: minLength(8) },
+      email: { required, email },
+      phone: { required, phone },
+      identity: { required, identity },
+      birthday: { required },
+    },
+  };
+});
 
-let v$ = ref(useVuelidate(rules, state));
+let v$ = useVuelidate(rules, state);
 
 const saveButtonDisabled = computed(() => {
   v$.value.$validate();
