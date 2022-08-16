@@ -24,14 +24,7 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, reactive } from "vue";
-import {
-  getCPUCount,
-  getCPUUsage,
-  getDiskFree,
-  getDiskTotal,
-  getJVMMemoryMax,
-  getJVMMemoryUsed,
-} from "@/utils";
+import { actuator } from "@/utils";
 
 const metrics = reactive({
   maxJVMMemory: "",
@@ -61,34 +54,34 @@ function formatNumber(
 // 初始化所有的性能指标
 function initMetrics(): void {
   // 这里需要在then回调函数中进行格式化，因此会比较丑
-  getJVMMemoryMax().then((res) => {
+  actuator.getJVMMemoryMax().then((res) => {
     metrics.maxJVMMemory = formatNumber(
       res.measurements[0].value as number,
       "mega"
     );
   });
-  getJVMMemoryUsed().then((res) => {
+  actuator.getJVMMemoryUsed().then((res) => {
     metrics.usedJVMMemory = formatNumber(
       res.measurements[0].value as number,
       "mega"
     );
   });
-  getCPUCount().then((res) => {
+  actuator.getCPUCount().then((res) => {
     metrics.cpuCount = res.measurements[0].value.toString();
   });
-  getCPUUsage().then((res) => {
+  actuator.getCPUUsage().then((res) => {
     metrics.cpuUsage = formatNumber(
       res.measurements[0].value as number,
       "percentage"
     );
   });
-  getDiskFree().then((res) => {
+  actuator.getDiskFree().then((res) => {
     metrics.freeDisk = formatNumber(
       res.measurements[0].value as number,
       "giga"
     );
   });
-  getDiskTotal().then((res) => {
+  actuator.getDiskTotal().then((res) => {
     metrics.totalDisk = formatNumber(
       res.measurements[0].value as number,
       "giga"

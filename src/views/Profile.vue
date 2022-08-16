@@ -87,15 +87,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive} from "vue";
+import { computed, onMounted, reactive } from "vue";
 
 import { useLoginStore } from "@/store";
 import { Employee } from "@/common";
-import { identity, jsonResRequest, phone } from "@/utils";
+import { jsonResRequest, validation } from "@/utils";
 import router from "@/routes";
 
 import useVuelidate from "@vuelidate/core";
-import { email, maxLength, minLength, required } from "@vuelidate/validators";
 
 const loginStore = useLoginStore();
 
@@ -117,12 +116,22 @@ let state = reactive({ currentEmployee: {} as Employee });
 const rules = computed(() => {
   return {
     currentEmployee: {
-      name: { required, maxLength: maxLength(10) },
-      jobNumber: { required, maxLength: maxLength(8), minLength: minLength(8) },
-      email: { required, email },
-      phone: { required, phone },
-      identity: { required, identity },
-      birthday: { required },
+      name: {
+        required: validation.required,
+        maxLength: validation.maxLength(10),
+      },
+      jobNumber: {
+        required: validation.required,
+        maxLength: validation.maxLength(8),
+        minLength: validation.minLength(8),
+      },
+      email: { required: validation.required, email: validation.email },
+      phone: { required: validation.required, phone: validation.phone },
+      identity: {
+        required: validation.required,
+        identity: validation.identity,
+      },
+      birthday: { required: validation.required },
     },
   };
 });
