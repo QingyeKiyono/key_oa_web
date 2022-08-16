@@ -101,6 +101,13 @@ function updatePage(page: Number): void {
 
 function deleteEmployees() {
   console.log(state.selectEmployees.length);
+  jsonResRequest({
+    url: "/employees/:deleteBatch",
+    method: "POST",
+    data: JSON.stringify(state.selectEmployees),
+  }).then(() => {
+    router.go(0);
+  });
 }
 
 onMounted(() => {
