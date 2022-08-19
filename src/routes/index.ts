@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { getCookie } from "typescript-cookie";
 import { CookieName } from "@/common";
 
-import Profile from "@/views/Profile.vue";
+import Profile from "@/views/Detail/Profile.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/employees",
-        component: () => import("@/views/Employees.vue"),
+        component: () => import("@/views/List/Employees.vue"),
       },
       {
         path: "/profile/:profile",
