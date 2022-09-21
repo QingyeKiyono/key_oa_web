@@ -60,7 +60,7 @@ import { getCookie, removeCookie } from "typescript-cookie";
 
 import router from "@/routes";
 import { jsonResRequest } from "@/utils";
-import { CookieName, Employee, Page } from "@/common";
+import { CookieName, Employee, PageRes } from "@/common";
 import { useLoginStore } from "@/store";
 
 // 是否显示侧边导航栏
@@ -92,7 +92,7 @@ let gotoProfile = () => {
 };
 
 // 侧边栏的路由信息
-let navigationRoutes = reactive<Array<Page>>([]);
+let navigationRoutes = reactive<Array<PageRes>>([]);
 
 onMounted(() => {
   // 加载当前员工的个人信息
@@ -107,7 +107,7 @@ onMounted(() => {
   });
 
   // 加载页面资源
-  jsonResRequest<Array<Page>>({
+  jsonResRequest<Array<PageRes>>({
     url: `/pages/current`,
   }).then((res) => {
     for (const page of res.data) {

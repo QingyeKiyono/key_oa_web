@@ -1,6 +1,6 @@
 // 员工实体的类型定义
 interface Employee {
-  id?: Number;
+  id: Number;
   name: String;
   jobNumber: String;
   phone: String;
@@ -9,16 +9,41 @@ interface Employee {
   birthday: Date;
   password: String;
   verified: Boolean;
+  roles?: Set<Role>;
 }
 
-// 路由项的类型定义
-interface Page {
+// 角色的类型定义
+interface Role {
+  id: Number;
+  name: String;
+  active: Boolean;
+  parent?: Role;
+  children?: Set<Role>;
+  employees?: Set<Employee>;
+  permissions?: Set<Permission>;
+  pageRes?: Set<PageRes>;
+}
+
+// 权限的类型定义
+interface Permission {
+  id: Number;
+  value: String;
+  description: String;
+  parent?: Permission;
+  children?: Set<Permission>;
+  roles?: Set<Role>;
+}
+
+// 页面资源的类型定义
+interface PageRes {
   id: Number;
   url: String;
   description: String;
   icon: String;
   pageGroup: Boolean;
-  children: Set<Page>;
+  parent?: PageRes;
+  children?: Set<PageRes>;
+  roles?: Set<Role>;
 }
 
-export { type Employee, type Page };
+export { type Employee, type PageRes };

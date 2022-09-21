@@ -6,7 +6,7 @@ interface JsonResponse<T = any> {
 export { type JsonResponse };
 
 // Entity types.
-export { type Employee, type Page } from "./Entity";
+export { type Employee, type PageRes } from "./Entity";
 
 // Actuator type.
 export { type Actuator, type Metrics, type MetricsNames } from "./Actuator";
