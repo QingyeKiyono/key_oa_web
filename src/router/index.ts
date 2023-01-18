@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import { getCookie } from "typescript-cookie";
-import { CookieName } from "@/common";
+import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
+import {getCookie} from "typescript-cookie";
+import {CookieName} from "@/common";
 
 import Profile from "@/views/Detail/Profile.vue";
 

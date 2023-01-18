@@ -67,12 +67,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive } from "vue";
+import {onMounted, reactive} from "vue";
 
-import { jsonResRequest } from "@/utils";
-import { Employee } from "@/common";
-import router from "@/routes";
-import { useLoginStore } from "@/store";
+import {jsonResRequest} from "@/utils";
+import {Employee} from "@/common";
+import router from "@/router";
+import {useLoginStore} from "@/store";
 
 const store = useLoginStore();
 

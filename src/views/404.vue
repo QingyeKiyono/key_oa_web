@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import router from "@/routes";
-</script>
+import router from "@/router";</script>
 
 <style scoped></style>

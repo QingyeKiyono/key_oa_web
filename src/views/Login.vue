@@ -36,12 +36,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
-import { getCookie, setCookie } from "typescript-cookie";
+import {onMounted, reactive, ref} from "vue";
+import {getCookie, setCookie} from "typescript-cookie";
 
-import { CookieName } from "@/common";
-import router from "@/routes";
-import { jsonResRequest } from "@/utils";
+import {CookieName} from "@/common";
+import router from "@/router";
+import {jsonResRequest} from "@/utils";
 
 // 登录用到的提交内容
 const loginForm = reactive({

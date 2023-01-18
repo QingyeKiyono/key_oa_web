@@ -1,24 +1,20 @@
-// Vue app
-import { createApp } from "vue";
-import App from "./App.vue";
+/**
+ * main.ts
+ *
+ * Bootstraps Vuetify and other plugins then mounts the App`
+ */
 
-// Vuetify
-import "vuetify/styles";
-import "@mdi/font/css/materialdesignicons.min.css";
-import { createVuetify } from "vuetify";
-// Vuetify Components
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
-const vuetify = createVuetify({ components, directives });
+// Components
+import App from './App.vue'
 
-// Vue Router
-import router from "@/routes";
+// Composables
+import {createApp} from 'vue'
 
-// Pinia
-import pinia from "@/store";
+// Plugins
+import {registerPlugins} from '@/plugins'
 
-const app = createApp(App);
-app.use(vuetify);
-app.use(router);
-app.use(pinia);
-app.mount("#app");
+const app = createApp(App)
+
+registerPlugins(app)
+
+app.mount('#app')

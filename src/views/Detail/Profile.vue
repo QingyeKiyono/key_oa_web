@@ -87,12 +87,12 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive } from "vue";
+import {computed, onMounted, reactive} from "vue";
 
-import { useLoginStore } from "@/store";
-import { Employee } from "@/common";
-import { jsonResRequest, validation } from "@/utils";
-import router from "@/routes";
+import {useLoginStore} from "@/store";
+import {Employee} from "@/common";
+import {jsonResRequest, validation} from "@/utils";
+import router from "@/router";
 
 import useVuelidate from "@vuelidate/core";
 

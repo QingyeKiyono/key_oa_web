@@ -55,13 +55,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
-import { getCookie, removeCookie } from "typescript-cookie";
+import {onMounted, reactive, ref} from "vue";
+import {getCookie, removeCookie} from "typescript-cookie";
 
-import router from "@/routes";
-import { jsonResRequest } from "@/utils";
-import { CookieName, Employee, PageRes } from "@/common";
-import { useLoginStore } from "@/store";
+import router from "@/router";
+import {jsonResRequest} from "@/utils";
+import {CookieName, Employee, PageRes} from "@/common";
+import {useLoginStore} from "@/store";
 
 // 是否显示侧边导航栏
 const showSideDrawer = ref(true);
