@@ -1,6 +1,6 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { CookieName, JsonResponse } from "@/common";
-import { getCookie } from "typescript-cookie";
+import axios, {RawAxiosRequestConfig} from "axios";
+import {CookieName, JsonResponse} from "@/common";
+import {getCookie} from "typescript-cookie";
 
 const instance = axios.create({
   baseURL: "http://localhost:8080",
@@ -14,14 +14,14 @@ const instance = axios.create({
 });
 
 // 普通的request，返回的response可以没有固定格式
-const request = async <T = any>(config: AxiosRequestConfig): Promise<T> => {
+const request = async <T = any>(config: RawAxiosRequestConfig): Promise<T> => {
   const { data } = await instance.request<T>(config);
   return data;
 };
 
 // Json request，返回的response需要符合JsonResponse的格式
 const jsonResRequest = async <T = any>(
-  config: AxiosRequestConfig
+  config: RawAxiosRequestConfig
 ): Promise<JsonResponse<T>> => {
   let token = getCookie(CookieName.token);
   if (token != null) {
