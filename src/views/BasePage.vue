@@ -42,8 +42,8 @@
     <router-view></router-view>
   </v-main>
   <v-dialog v-model="showLogoutConfirm">
-    <v-card>
-      <v-card-text> 确定要退出登陆吗</v-card-text>
+    <v-card class="v-col-2 offset-5">
+      <v-card-text> 确定要退出登陆吗？</v-card-text>
       <v-divider></v-divider>
       <v-card-actions>
         <v-btn @click="showLogoutConfirm = false">取消</v-btn>
