@@ -112,7 +112,7 @@ onMounted(() => {
   }).then((res) => {
     for (const page of res.data) {
       // 将路由显示在页面上
-      navigationRoutes.push(...res.data);
+      navigationRoutes.push(page);
     }
   });
 });
