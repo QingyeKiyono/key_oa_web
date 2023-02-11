@@ -39,7 +39,7 @@
 import {onMounted, reactive, ref} from "vue";
 import {getCookie, setCookie} from "typescript-cookie";
 
-import {CookieName} from "@/common";
+import {CookieName, initTheme} from "@/common";
 import router from "@/router";
 import {jsonResRequest} from "@/utils";
 
@@ -84,6 +84,8 @@ let login = () => {
     }
   });
 };
+
+initTheme();
 </script>
 
 <style scoped></style>

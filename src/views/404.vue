@@ -23,6 +23,10 @@
 </template>
 
 <script setup lang="ts">
-import router from "@/router";</script>
+import router from "@/router";
+import {initTheme} from "@/common";
+
+initTheme();
+</script>
 
 <style scoped></style>

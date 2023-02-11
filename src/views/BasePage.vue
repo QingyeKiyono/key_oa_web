@@ -2,22 +2,28 @@
   <v-navigation-drawer :rail="extendSideMenu" app expand-on-hover>
     <v-list>
       <v-list-item
-        prepend-icon="mdi-account"
         :title="loginStore.name"
         :subtitle="loginStore.jobNumber"
         @click="gotoProfile"
-      ></v-list-item>
+      >
+        <template v-slot:prepend
+          ><v-icon color="primary">mdi-account</v-icon>
+        </template>
+      </v-list-item>
       <v-divider></v-divider>
       <v-list :nav="true">
         <v-list-item
           v-for="navRoute in navigationRoutes"
           :key="navRoute.id"
-          :prepend-icon="navRoute.icon"
           :title="navRoute.description"
           :value="navRoute.url"
           :link="true"
           :to="navRoute.url"
-        ></v-list-item>
+        >
+          <template v-slot:prepend>
+            <v-icon color="primary">{{ navRoute.icon }}</v-icon>
+          </template>
+        </v-list-item>
       </v-list>
     </v-list>
   </v-navigation-drawer>
@@ -44,6 +50,7 @@
   <v-main app>
     <router-view></router-view>
   </v-main>
+  <!-- To make footer component display in every page, it's placed in App.vue. -->
   <v-dialog v-model="showLogoutConfirm">
     <v-card class="v-col-2 offset-5">
       <v-card-text> 确定要退出登陆吗？</v-card-text>
@@ -59,11 +66,11 @@
 
 <script setup lang="ts">
 import {onMounted, reactive, ref} from "vue";
-import {getCookie, removeCookie} from "typescript-cookie";
+import {getCookie, removeCookie, setCookie} from "typescript-cookie";
 
 import router from "@/router";
 import {jsonResRequest} from "@/utils";
-import {CookieName, Employee, PageRes} from "@/common";
+import {CookieName, Employee, initTheme, PageRes} from "@/common";
 import {useLoginStore} from "@/store";
 import {useTheme} from "vuetify";
 
@@ -78,6 +85,8 @@ const theme = useTheme();
 
 let toggleTheme = () => {
   theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+  // 把页面主题存入Cookie中，设置永不过期
+  setCookie(CookieName.theme, theme.global.name.value, { expires: 365 * 10 });
 };
 
 // 退出登录按钮被点击
@@ -126,6 +135,8 @@ onMounted(() => {
       navigationRoutes.push(page);
     }
   });
+
+  initTheme();
 });
 </script>
 
