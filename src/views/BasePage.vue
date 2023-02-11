@@ -21,7 +21,7 @@
       </v-list>
     </v-list>
   </v-navigation-drawer>
-  <v-app-bar app flat class="bg-white">
+  <v-app-bar app flat>
     <v-app-bar-nav-icon
       @click="extendSideMenu = !extendSideMenu"
     ></v-app-bar-nav-icon>
@@ -32,6 +32,9 @@
     </v-btn>
     <v-btn>
       <v-icon>mdi-bell</v-icon>
+    </v-btn>
+    <v-btn @click="toggleTheme">
+      <v-icon>mdi-theme-light-dark</v-icon>
     </v-btn>
     <v-btn @click="showLogoutConfirm = true">
       <span>退出登录</span>
@@ -62,12 +65,20 @@ import router from "@/router";
 import {jsonResRequest} from "@/utils";
 import {CookieName, Employee, PageRes} from "@/common";
 import {useLoginStore} from "@/store";
+import {useTheme} from "vuetify";
 
 // 是否显示侧边导航栏
 const extendSideMenu = ref(false);
 
 // 确认退出登录的对话框是否显示
 const showLogoutConfirm = ref(false);
+
+// Vuetify颜色主题
+const theme = useTheme();
+
+let toggleTheme = () => {
+  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+};
 
 // 退出登录按钮被点击
 let logout = () => {
