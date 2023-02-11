@@ -82,7 +82,7 @@ let state = reactive({
   // 和分页有关的变量，分别是：页号；页数；每页员工数
   page: 1,
   length: 1,
-  pageSize: 9,
+  pageSize: 8,
   selectEmployees: [] as Array<string>,
 });
 
@@ -103,7 +103,7 @@ function deleteEmployees() {
   console.log(state.selectEmployees.length);
   jsonResRequest({
     url: "/employees/:deleteBatch",
-    method: "POST",
+    method: "DELETE",
     data: JSON.stringify(state.selectEmployees),
   }).then(() => {
     router.go(0);
