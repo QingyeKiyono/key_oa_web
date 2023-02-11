@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="showSideDrawer" app :expand-on-hover="true">
+  <v-navigation-drawer :rail="extendSideMenu" app expand-on-hover>
     <v-list>
       <v-list-item
         prepend-icon="mdi-account"
@@ -23,7 +23,7 @@
   </v-navigation-drawer>
   <v-app-bar app flat class="bg-white">
     <v-app-bar-nav-icon
-      @click="showSideDrawer = !showSideDrawer"
+      @click="extendSideMenu = !extendSideMenu"
     ></v-app-bar-nav-icon>
     <v-app-bar-title @click="router.push('/')">KeyOA</v-app-bar-title>
     <v-spacer></v-spacer>
@@ -64,7 +64,7 @@ import {CookieName, Employee, PageRes} from "@/common";
 import {useLoginStore} from "@/store";
 
 // 是否显示侧边导航栏
-const showSideDrawer = ref(true);
+const extendSideMenu = ref(false);
 
 // 确认退出登录的对话框是否显示
 const showLogoutConfirm = ref(false);

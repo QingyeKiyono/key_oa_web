@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-form>
-      <v-row :no-gutters="true">
+      <v-row no-gutters>
         <v-col cols="3">
           <v-text-field
             :readonly="profile !== 'new'"
@@ -23,7 +23,7 @@
           </v-text-field>
         </v-col>
       </v-row>
-      <v-row :no-gutters="true">
+      <v-row no-gutters>
         <v-col cols="3">
           <v-text-field
             :readonly="profile !== 'new'"

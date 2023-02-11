@@ -1,6 +1,5 @@
 <template>
   <v-container class="ma-1 pa-0" fluid>
-    <!--suppress HtmlUnknownBooleanAttribute -->
     <v-row justify="start" no-gutters>
       <v-col cols="1">
         <v-btn
