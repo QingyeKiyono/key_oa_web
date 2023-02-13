@@ -7,6 +7,7 @@
     <template v-slot:item.icon="{ item }">
       <v-icon>{{ item.raw.icon }}</v-icon>
     </template>
+    <!-- 这里parent的判断和官方文档不一致，目前文档补全，无法正确实现 -->
     <template v-slot:item.parent="{ parent }">
       {{ parent == null ? "无" : parent.id }}
     </template>
