@@ -20,6 +20,10 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/List/Employees.vue"),
       },
       {
+        path: "/pages",
+        component: () => import("@/views/List/PageRes.vue"),
+      },
+      {
         path: "/profile/:profile",
         // 这里WebStorm不知道为什么会给出警告，所以更改一下导入方式
         // component: () => import("@/views/Profile.vue"),
