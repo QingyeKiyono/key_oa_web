@@ -1,14 +1,18 @@
 <template>
-  <v-data-table :headers="headers" :items="pages"></v-data-table>
+  <v-data-table
+    :headers="headers"
+    :items="pages"
+    @update:options="test"
+  ></v-data-table>
 </template>
 
 <script setup lang="ts">
-import {PageRes, VDataTableHeader} from "@/common/types";
+import {DataTableHeader, PageRes} from "@/common/types";
 import {onMounted, ref} from "vue";
 import {jsonResRequest} from "@/utils";
 
 // 表格标题
-const headers: Array<VDataTableHeader> = [
+const headers: Array<DataTableHeader> = [
   {
     title: "Url",
     key: "url",
@@ -35,18 +39,24 @@ const headers: Array<VDataTableHeader> = [
   },
 ];
 
-let pages = ref(new Array<PageRes>());
+const pages = ref(new Array<PageRes>());
 
-onMounted(() => {
+function fetchPages(page: Number, size: Number) {
   jsonResRequest<Array<PageRes>>({
     url: "/pages",
-    params: {
-      page: 1,
-      size: 10,
-    },
+    params: { page, size },
   }).then((res) => {
-    pages.value.push(...res.data)
+    pages.value = res.data;
   });
+}
+
+function test(paras: Object) {
+  console.log(paras);
+  fetchPages((paras as any).page, (paras as any).itemsPerPage);
+}
+
+onMounted(() => {
+  fetchPages(1, 10);
 });
 </script>
 

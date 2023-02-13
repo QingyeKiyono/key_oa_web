@@ -5,14 +5,11 @@ interface JsonResponse<T = any> {
 }
 export { type JsonResponse };
 
-interface VDataTableHeader {
-  title: String;
-  sortable: Boolean;
-  align: "start" | "end";
-  key: String;
-}
-
-export { type VDataTableHeader };
+export {
+  type DataTableHeader,
+  type SelectItemKey,
+  type DataTableCompareFunction,
+} from "./VuetifyType";
 
 // Entity types.
 export { type Employee, type PageRes } from "./Entity";
