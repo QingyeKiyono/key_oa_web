@@ -16,7 +16,7 @@
         </v-card>
       </v-col>
       <v-col cols="3" align-self="center">
-        <v-img src="./NotFound.svg" height="300"></v-img>
+        <v-img :src="imgUrl" height="300"></v-img>
       </v-col>
     </v-row>
   </v-container>
@@ -25,6 +25,7 @@
 <script setup lang="ts">
 import router from "@/router";
 import {initTheme} from "@/common";
+import imgUrl from "@/assets/NotFound.svg";
 
 initTheme();
 </script>
