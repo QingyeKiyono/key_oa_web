@@ -12,8 +12,15 @@ function initTheme() {
 // Cookie names
 export { CookieName } from "./Constant";
 
-// types
+// Types
 export { type JsonResponse } from "./types";
 export { type Employee, type PageRes } from "./types";
 export { type Actuator, type Metrics, type MetricsNames } from "./types";
+export {
+  type DataTableHeader,
+  type SelectItemKey,
+  type DataTableCompareFunction,
+} from "./types";
+
+// Theme initialization
 export { initTheme };
