@@ -2,6 +2,7 @@
 interface Employee {
   id: Number;
   name: String;
+  gender: Boolean;
   jobNumber: String;
   phone: String;
   email: String;
