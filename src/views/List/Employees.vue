@@ -17,6 +17,15 @@
         <v-btn>新建员工信息</v-btn>
       </v-toolbar>
     </template>
+    <template v-slot:item.gender="{ item }">
+      <v-chip
+        :color="item.raw.gender ? 'blue' : 'pink'"
+        rounded
+        variant="outlined"
+      >
+        {{ item.raw.gender ? "男" : "女" }}
+      </v-chip>
+    </template>
     <template v-slot:item.verified="{ item }">
       <v-icon>{{ item.raw.verified ? "mdi-check" : "mdi-close" }}</v-icon>
     </template>
@@ -49,6 +58,7 @@ import {useLoginStore} from "@/store";
 const headers: Array<DataTableHeader> = [
   { title: "Id", key: "id" },
   { title: "姓名", key: "name" },
+  { title: "性别", key: "gender" },
   { title: "工号", key: "jobNumber" },
   { title: "电话号码", key: "phone" },
   { title: "电子邮箱", key: "email" },
