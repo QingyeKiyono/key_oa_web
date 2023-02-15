@@ -49,11 +49,11 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import { onMounted, ref } from "vue";
 
-import {jsonResRequest} from "@/utils";
-import {DataTableHeader, Employee} from "@/common";
-import {useLoginStore} from "@/store";
+import { jsonResRequest } from "@/utils";
+import { DataTableHeader, Employee } from "@/common";
+import { useLoginStore } from "@/store";
 
 const headers: Array<DataTableHeader> = [
   { title: "Id", key: "id" },
