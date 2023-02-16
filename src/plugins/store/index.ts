@@ -5,5 +5,5 @@ const pinia = createPinia();
 export default pinia;
 
 // Stores.
-import useLoginStore from "@/store/UseLoginStore";
+import useLoginStore from "@/plugins/store/UseLoginStore";
 export { useLoginStore };

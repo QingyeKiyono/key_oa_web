@@ -68,10 +68,10 @@
 import {onMounted, reactive, ref} from "vue";
 import {getCookie, removeCookie, setCookie} from "typescript-cookie";
 
-import router from "@/router";
+import router from "@/plugins/router";
 import {jsonResRequest} from "@/utils";
 import {CookieName, Employee, initTheme, PageRes} from "@/common";
-import {useLoginStore} from "@/store";
+import {useLoginStore} from "@/plugins/store";
 import {useTheme} from "vuetify";
 
 // 是否显示侧边导航栏

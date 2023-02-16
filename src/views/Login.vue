@@ -40,7 +40,7 @@ import {onMounted, reactive, ref} from "vue";
 import {getCookie, setCookie} from "typescript-cookie";
 
 import {CookieName, initTheme} from "@/common";
-import router from "@/router";
+import router from "@/plugins/router";
 import {jsonResRequest} from "@/utils";
 
 // 登录用到的提交内容

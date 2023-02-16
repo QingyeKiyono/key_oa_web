@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import router from "@/router";
+import router from "@/plugins/router";
 import {initTheme} from "@/common";
 import imgUrl from "@/assets/NotFound.svg";
 

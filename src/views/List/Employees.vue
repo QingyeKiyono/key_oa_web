@@ -53,7 +53,7 @@ import { onMounted, ref } from "vue";
 
 import { jsonResRequest } from "@/utils";
 import { DataTableHeader, Employee } from "@/common";
-import { useLoginStore } from "@/store";
+import { useLoginStore } from "@/plugins/store";
 
 const headers: Array<DataTableHeader> = [
   { title: "Id", key: "id" },
