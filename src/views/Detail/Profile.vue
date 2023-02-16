@@ -195,6 +195,7 @@ function saveEmployee(): void {
   const employee: Employee = {
     id: 0,
     name: state.currentEmployee.name,
+    gender: state.currentEmployee.gender,
     jobNumber: state.currentEmployee.jobNumber,
     phone: state.currentEmployee.phone,
     email: state.currentEmployee.email,
