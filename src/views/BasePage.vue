@@ -51,14 +51,13 @@
     <router-view></router-view>
   </v-main>
   <!-- To make footer component display in every page, it's placed in App.vue. -->
-  <v-dialog v-model="showLogoutConfirm">
-    <v-card class="v-col-2 offset-5">
+  <v-dialog v-model="showLogoutConfirm" width="auto">
+    <v-card>
       <v-card-text> 确定要退出登陆吗？</v-card-text>
-      <v-divider></v-divider>
       <v-card-actions>
-        <v-btn @click="showLogoutConfirm = false">取消</v-btn>
-        <v-spacer></v-spacer>
         <v-btn @click="logout">确认</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn @click="showLogoutConfirm = false">取消</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
