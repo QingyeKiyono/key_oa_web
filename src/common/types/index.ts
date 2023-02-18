@@ -9,6 +9,7 @@ export {
   type DataTableHeader,
   type SelectItemKey,
   type DataTableCompareFunction,
+  type DataTableOptions,
 } from "./VuetifyType";
 
 // Entity types.

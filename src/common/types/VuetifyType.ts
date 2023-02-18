@@ -28,4 +28,13 @@ export type DataTableHeader = {
 
   sortable?: boolean;
   sort?: DataTableCompareFunction;
+};
+
+// VDataTable中@update:options的options
+export interface DataTableOptions {
+  page: number;
+  itemsPerPage: number;
+  sortBy?: String;
+  // For unknown fields
+  [prop: string]: unknown;
 }
