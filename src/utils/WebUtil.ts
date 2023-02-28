@@ -1,6 +1,6 @@
-import axios, {RawAxiosRequestConfig} from "axios";
-import {CookieName, JsonResponse} from "@/common";
-import {getCookie} from "typescript-cookie";
+import axios, { RawAxiosRequestConfig } from "axios";
+import { CookieName, JsonResponse } from "@/common";
+import { getCookie } from "typescript-cookie";
 
 const instance = axios.create({
   baseURL: "http://localhost:8080",

@@ -1,7 +1,7 @@
 // Constant
-import {useTheme} from "vuetify";
-import {getCookie} from "typescript-cookie";
-import {CookieName} from "@/common/Constant";
+import { useTheme } from "vuetify";
+import { getCookie } from "typescript-cookie";
+import { CookieName } from "@/common/Constant";
 
 // 用于初始化页面的颜色主图
 function initTheme() {

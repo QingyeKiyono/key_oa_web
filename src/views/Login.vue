@@ -36,12 +36,12 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, reactive, ref} from "vue";
-import {getCookie, setCookie} from "typescript-cookie";
+import { onMounted, reactive, ref } from "vue";
+import { getCookie, setCookie } from "typescript-cookie";
 
-import {CookieName, initTheme} from "@/common";
+import { CookieName, initTheme } from "@/common";
 import router from "@/plugins/router";
-import {jsonResRequest} from "@/utils";
+import { jsonResRequest } from "@/utils";
 
 // 登录用到的提交内容
 const loginForm = reactive({
@@ -64,17 +64,19 @@ const rememberMe = ref(false);
 onMounted(() => {
   // 尝试加载预先存放咋cookie中的工号
   loginForm.jobNumber = getCookie(CookieName.jobNumber) || "";
+  // 加载颜色主题
+  initTheme();
 });
 
 let login = () => {
-  jsonResRequest<String>({
+  jsonResRequest<string>({
     data: loginForm,
     url: "/login",
     method: "POST",
   }).then((r) => {
     if (r.code == "00000") {
       // 如果登陆成功，那么保存token，在后续的header中带上
-      setCookie(CookieName.token, r.data.toString(), { expires: 1 });
+      setCookie(CookieName.token, r.data, { expires: 1 });
       // 如果勾选了记住我选项，那么把工号保存30天，反之保存1天
       setCookie(CookieName.jobNumber, loginForm.jobNumber, {
         expires: rememberMe.value ? 30 : 1,
@@ -84,8 +86,6 @@ let login = () => {
     }
   });
 };
-
-initTheme();
 </script>
 
 <style scoped></style>

@@ -40,9 +40,9 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {DataTableHeader, PageRes} from "@/common";
-import {jsonResRequest} from "@/utils";
+import { onMounted, ref } from "vue";
+import { DataTableHeader, PageRes } from "@/common";
+import { jsonResRequest } from "@/utils";
 
 // 表格标题
 const headers: Array<DataTableHeader> = [

@@ -24,10 +24,13 @@
 
 <script setup lang="ts">
 import router from "@/plugins/router";
-import {initTheme} from "@/common";
+import { initTheme } from "@/common";
 import imgUrl from "@/assets/NotFound.svg";
+import { onMounted } from "vue";
 
-initTheme();
+onMounted(() => {
+  initTheme();
+});
 </script>
 
 <style scoped></style>
