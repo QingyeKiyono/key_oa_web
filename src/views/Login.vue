@@ -32,6 +32,14 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-snackbar v-model="showErrorTip" location="top" variant="outlined">
+      {{ errorMessage }}
+      <template v-slot:actions>
+        <v-btn @click="showErrorTip = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-main>
 </template>
 
@@ -40,8 +48,11 @@ import { onMounted, reactive, ref } from "vue";
 import { getCookie, setCookie } from "typescript-cookie";
 
 import { CookieName, initTheme } from "@/common";
-import router from "@/plugins/router";
 import { jsonResRequest } from "@/utils";
+import { useRouter } from "vue-router";
+
+// Vue router
+const router = useRouter();
 
 // 登录用到的提交内容
 const loginForm = reactive({
@@ -61,12 +72,9 @@ const roles = {
 // 是否保存当前员工工号
 const rememberMe = ref(false);
 
-onMounted(() => {
-  // 尝试加载预先存放咋cookie中的工号
-  loginForm.jobNumber = getCookie(CookieName.jobNumber) || "";
-  // 加载颜色主题
-  initTheme();
-});
+// 登录失败时的提示
+const showErrorTip = ref(false);
+const errorMessage = ref("");
 
 let login = () => {
   jsonResRequest<string>({
@@ -83,9 +91,19 @@ let login = () => {
       });
       // 跳转到首页
       router.push("/");
+    } else {
+      showErrorTip.value = true;
+      errorMessage.value = r.message.toString();
     }
   });
 };
+
+onMounted(() => {
+  // 尝试加载预先存放咋cookie中的工号
+  loginForm.jobNumber = getCookie(CookieName.jobNumber) || "";
+  // 加载颜色主题
+  initTheme();
+});
 </script>
 
 <style scoped></style>
