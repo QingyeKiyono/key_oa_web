@@ -48,10 +48,17 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
+  // 获取登录的token
+  const token = getCookie(CookieName.token);
   if (to.path != "/login") {
-    // 如果不是首页的话，就检查token是否存在，如果不存在，就跳转到登录页面
-    if (getCookie(CookieName.token) == null) {
+    // 如果token不存在，就无法访问出登录页面以外的其他页面
+    if (token == null) {
       router.push("/login").then();
+    }
+  } else {
+    // 如果token存在，则不允许访问登录页面，防止重复登录
+    if (token != null) {
+      router.push("/").then();
     }
   }
 
