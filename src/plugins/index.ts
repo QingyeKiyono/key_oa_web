@@ -5,8 +5,8 @@
  */
 
 // Plugins
-import { loadFonts } from "./webfontloader";
-import vuetify from "./vuetify";
+import { loadFonts } from "./WebFontLoader";
+import vuetify from "./PluginVuetify";
 import pinia from "./store";
 import router from "./router";
 
